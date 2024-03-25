@@ -1,14 +1,28 @@
 package sets.employeewebapp.model;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Employee {
-    private  String firstname;
-    private  String lastname;
+    private String firstname;
+    private String lastname;
+    private int salary;
+    private int departmentId;
 
     public Employee(String firstname, String lastname) {
+        Random random = new Random();
+
         this.firstname = firstname;
         this.lastname = lastname;
+        this.salary = random.nextInt(10000) + 1000;
+        this.departmentId = random.nextInt(5) + 1;
+    }
+
+    public Employee(String firstname, String lastname, int salary, int departmentId) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.salary = salary;
+        this.departmentId = departmentId;
     }
 
     public String getFirstname() {
@@ -26,8 +40,25 @@ public class Employee {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
-    public String getFullName () {
-        return firstname +"  " + lastname;
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public int getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public String getFullName() {
+        return firstname + "  " + lastname;
 
     }
 
