@@ -1,7 +1,11 @@
 package sets.employeewebapp.model;
 
+
+
 import java.util.Objects;
 import java.util.Random;
+
+import static org.apache.commons.lang3.StringUtils.capitalize;
 
 public class Employee {
     private String firstname;
@@ -12,15 +16,15 @@ public class Employee {
     public Employee(String firstname, String lastname) {
         Random random = new Random();
 
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstname = capitalize(firstname) ;
+        this.lastname = capitalize(lastname) ;
         this.salary = random.nextInt(10000) + 1000;
         this.departmentId = random.nextInt(5) + 1;
     }
 
     public Employee(String firstname, String lastname, int salary, int departmentId) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstname = capitalize(firstname) ;
+        this.lastname = capitalize(lastname) ;
         this.salary = salary;
         this.departmentId = departmentId;
     }
