@@ -1,9 +1,6 @@
 package sets.employeewebapp.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sets.employeewebapp.model.Employee;
 import sets.employeewebapp.service.DepartmentService;
 
@@ -12,27 +9,31 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/departments")
+@RequestMapping("/department")
 public class DepartmentController {
     private final DepartmentService departmentService;
 
     public DepartmentController(DepartmentService departmentService) {
         this.departmentService = departmentService;
     }
+    @GetMapping("{depatrmentsId}/salary/sum")
+    public Integer getDepartmentIdSalarySum(@PathVariable int departmentId) {
+        return departmentService.getDepartmentIdSalarySum(departmentId);
+    }
 
-    @GetMapping("/max-salary")
-    public Employee findEmployeeWithMaxSalary(@RequestParam int departmentId) {
+    @GetMapping("{depatrmentsId}/salary/max")
+    public Employee findEmployeeWithMaxSalary(@PathVariable int departmentId) {
         return departmentService.findEmployeeWithMaxSalary(departmentId);
     }
-    @GetMapping("/min-salary")
-    public Employee findEmployeeWithMinSalary(@RequestParam int departmentId) {
+    @GetMapping("{depatrmentsId}/salary/min")
+    public Employee findEmployeeWithMinSalary(@PathVariable int departmentId) {
         return departmentService.findEmployeeWithMinSalary(departmentId);
     }
-    @GetMapping(value = "/all",params =  {"departmentId"})
-    public Collection<Employee> findEmployeeByDepartments(@RequestParam int departmentId) {
+    @GetMapping(value = "{depatrmentsId}/employees",params =  {"departmentId"})
+    public Collection<Employee> findEmployeeByDepartments(@PathVariable int departmentId) {
         return departmentService.findEmployeeByDepartment(departmentId);
     }
-    @GetMapping("/all")
+    @GetMapping("employees")
     public Map<Integer, List<Employee>> findEmployeeByDepartments() {
         return departmentService.findEmployeeByDepartment();
     }
