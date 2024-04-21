@@ -1,11 +1,12 @@
-package sets.employeewebapp.service;
+package sets.employeewebapp.service.Impl;
 
 import org.springframework.stereotype.Service;
 import sets.employeewebapp.exception.EmployeeNotFoundException;
 import sets.employeewebapp.model.Employee;
+import sets.employeewebapp.service.DepartmentService;
+import sets.employeewebapp.service.EmployeeService;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,6 +20,14 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     public DepartmentServiceImpl(EmployeeService employeeService) {
         this.employeeService = employeeService;
+    }
+
+    @Override
+    public Integer getDepartmentIdSalarySum(int departmentId) {
+        return employeeService.findAll().stream()
+                .filter(e -> e.getDepartmentId() == departmentId)
+                .mapToInt(Employee::getSalary)
+                .sum();
     }
 
     @Override

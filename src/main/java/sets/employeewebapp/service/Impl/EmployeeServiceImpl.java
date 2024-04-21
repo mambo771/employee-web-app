@@ -1,10 +1,12 @@
-package sets.employeewebapp.service;
+package sets.employeewebapp.service.Impl;
 
 import org.springframework.stereotype.Service;
 import sets.employeewebapp.exception.EmployeeAlreadyException;
 import sets.employeewebapp.exception.EmployeeNotFoundException;
 import sets.employeewebapp.exception.EmployeeStorageFullException;
 import sets.employeewebapp.model.Employee;
+import sets.employeewebapp.service.EmployeeService;
+import sets.employeewebapp.service.EmployeeValidationService;
 
 import java.util.*;
 
@@ -13,7 +15,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private static final int EMPLOYEE_STORAGE_SIZE = 10;
     private final Map<String, Employee> employees = new HashMap<>();
 
-    private final  EmployeeValidationService employeeValidationService;
+    private final EmployeeValidationService employeeValidationService;
 
     public EmployeeServiceImpl(EmployeeValidationService employeeValidationService) {
         this.employeeValidationService = employeeValidationService;

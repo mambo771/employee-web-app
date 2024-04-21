@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface DepartmentService {
+    Integer getDepartmentIdSalarySum( int departmentId);
     Employee findEmployeeWithMaxSalary(int departmentId);
     Employee findEmployeeWithMinSalary(int departmentId);
     Collection<Employee> findEmployeeByDepartment (int departmentId);
