@@ -49,7 +49,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Collection<Employee> findEmployeeByDepartment(int departmentId) {
-        return employeeService.findAll().stream()
+         return employeeService.findAll().stream()
                 .filter(e -> e.getDepartmentId() == departmentId)
                 .sorted(comparing(Employee::getFullName))
                 .collect(Collectors.toList());
